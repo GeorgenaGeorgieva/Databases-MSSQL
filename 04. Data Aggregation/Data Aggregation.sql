@@ -2,7 +2,7 @@ USE Gringotts
 
 GO
 
---Problem 1.Records’ Count
+--Problem 1.Recordsâ€™ Count
 --******************************
 
 SELECT COUNT(w.Id) AS [Count]
@@ -18,8 +18,8 @@ FROM WizzardDeposits AS w
 --**************************************************
 
 SELECT 
-		w.DepositGroup,
-		MAX(w.MagicWandSize) AS [LongestMagicWand]
+      w.DepositGroup,
+      MAX(w.MagicWandSize) AS [LongestMagicWand]
 FROM WizzardDeposits AS w
 GROUP BY w.DepositGroup
 
@@ -35,7 +35,7 @@ ORDER BY AVG(w.MagicWandSize)
 --**************************************
 
 SELECT w.DepositGroup, 
-	   SUM(w.DepositAmount) AS [TotalSum]
+       SUM(w.DepositAmount) AS [TotalSum]
 FROM WizzardDeposits AS w
 GROUP BY w.DepositGroup
 
@@ -43,7 +43,7 @@ GROUP BY w.DepositGroup
 --************************************************
 
 SELECT w.DepositGroup,
-		SUM(w.DepositAmount) AS [TotalSum]
+       SUM(w.DepositAmount) AS [TotalSum]
 FROM WizzardDeposits AS w
 WHERE w.MagicWandCreator = 'Ollivander family'
 GROUP BY w.DepositGroup
