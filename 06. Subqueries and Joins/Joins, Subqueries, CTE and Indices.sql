@@ -19,7 +19,7 @@ ORDER BY e.AddressID
 
 SELECT TOP 50
        e.FirstName,
-	   e.LastName,
+       e.LastName,
        t.[Name] AS Town,
        a.AddressText
 FROM Employees AS e
@@ -31,9 +31,9 @@ ORDER BY  e.FirstName, e.LastName
 --***************************************
 
 SELECT e.EmployeeID, 
-	   e.FirstName, 
-	   e.LastName, 
-	   d.[Name] AS DepartmentName
+       e.FirstName, 
+       e.LastName, 
+       d.[Name] AS DepartmentName
 FROM Employees AS e
 JOIN Departments AS d ON e.DepartmentID = d.DepartmentID
 WHERE d.[Name] = 'Sales'
@@ -43,10 +43,10 @@ ORDER BY e.EmployeeID
 --*********************************
 
 SELECT TOP 5 
-		e.EmployeeID,
-		e.FirstName,
-		e.Salary,
-		d.[Name] AS DepartmentName
+	e.EmployeeID,
+	e.FirstName,
+	e.Salary,
+	d.[Name] AS DepartmentName
 FROM Employees AS e
 JOIN Departments AS d ON e.DepartmentID = d.DepartmentID
 WHERE e.Salary > 15000
@@ -56,8 +56,8 @@ ORDER BY d.DepartmentID
 --*****************************************
 
 SELECT TOP 3
-		e.EmployeeID,
-		e.FirstName
+	e.EmployeeID,
+	e.FirstName
 FROM Employees AS e
 LEFT JOIN EmployeesProjects AS ep ON e.EmployeeID = ep.EmployeeID
 WHERE ep.ProjectID IS NULL
@@ -67,9 +67,9 @@ ORDER BY e.EmployeeID
 --****************************************
 
 SELECT e.FirstName, 
-	   e.LastName,
-	   e.HireDate,
-	   d.[Name] AS DeptName
+       e.LastName,
+       e.HireDate,
+       d.[Name] AS DeptName
 FROM Employees AS e
 JOIN Departments AS d ON e.DepartmentID = d.DepartmentID 
 					  AND d.[Name] IN ('Sales', 'Finance')
@@ -80,9 +80,9 @@ ORDER BY e.HireDate
 --***************************************
 
 SELECT TOP 5
-		e.EmployeeID,
-		e.FirstName,
-		p.[Name] AS ProjectName
+	e.EmployeeID,
+	e.FirstName,
+	p.[Name] AS ProjectName
 FROM Employees AS e
 JOIN EmployeesProjects AS ep ON e.EmployeeID = ep.EmployeeID
 JOIN Projects AS p ON ep.ProjectID = p.ProjectID
@@ -93,12 +93,12 @@ ORDER BY e.EmployeeID
 --********************************
 
 SELECT  e.EmployeeID,
-		e.FirstName,
-		CASE
+	e.FirstName,
+	CASE
            WHEN p.StartDate > '2005'
            THEN NULL
            ELSE p.[Name]
-       END AS ProjectName
+        END AS ProjectName
 FROM Employees AS e
 JOIN EmployeesProjects AS ep ON e.EmployeeID = ep.EmployeeID
 JOIN Projects AS p ON ep.ProjectID = p.ProjectID 
