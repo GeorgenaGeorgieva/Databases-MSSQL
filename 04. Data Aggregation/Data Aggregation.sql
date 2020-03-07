@@ -17,9 +17,8 @@ FROM WizzardDeposits AS w
 --Problem 3.Longest Magic Wand per Deposit Groups
 --**************************************************
 
-SELECT 
-      w.DepositGroup,
-      MAX(w.MagicWandSize) AS [LongestMagicWand]
+SELECT w.DepositGroup,
+       MAX(w.MagicWandSize) AS [LongestMagicWand]
 FROM WizzardDeposits AS w
 GROUP BY w.DepositGroup
 
@@ -63,8 +62,8 @@ ORDER BY TotalSum DESC
 --**********************************
 
 SELECT w.DepositGroup, 
-	   w.MagicWandCreator,
-	   MIN(w.DepositCharge) AS [MinDepositCharge]
+       w.MagicWandCreator,
+       MIN(w.DepositCharge) AS [MinDepositCharge]
 FROM WizzardDeposits AS w
 GROUP BY w.DepositGroup, w.MagicWandCreator
 
@@ -122,8 +121,8 @@ ORDER BY LEFT(w.FirstName, 1)
 --**********************************
 
 SELECT w.DepositGroup,
-	   w.IsDepositExpired, 
-	   AVG(w.DepositInterest) AS [AverageInterest]
+       w.IsDepositExpired, 
+       AVG(w.DepositInterest) AS [AverageInterest]
 FROM WizzardDeposits AS w
 WHERE w.DepositStartDate > '01/01/1985'
 GROUP BY w.DepositGroup, 
@@ -139,7 +138,7 @@ USE SoftUni
 GO
 
 SELECT e.DepartmentID,
-	   SUM(e.Salary) AS [TotalSalary]
+       SUM(e.Salary) AS [TotalSalary]
 FROM Employees AS e
 GROUP BY e.DepartmentID
 
@@ -147,7 +146,7 @@ GROUP BY e.DepartmentID
 --****************************************
 
 SELECT e.DepartmentID,
-	   MIN(e.Salary) AS [MinimumSalary]
+       MIN(e.Salary) AS [MinimumSalary]
 FROM Employees AS e
 WHERE e.HireDate > '2000-01-01'
 GROUP BY e.DepartmentID
@@ -166,11 +165,11 @@ FROM NewTable
 WHERE ManagerID = 42
 
 UPDATE NewTable
-	SET Salary += 5000
+SET Salary += 5000
 WHERE DepartmentID = 1
 
 SELECT n.DepartmentID,
-	   AVG(n.Salary) AS [AverageSalary]
+       AVG(n.Salary) AS [AverageSalary]
 FROM NewTable AS n
 GROUP BY n.DepartmentID
 
@@ -178,7 +177,7 @@ GROUP BY n.DepartmentID
 --*****************************************
 
 SELECT e.DepartmentID,
-	   MAX(e.Salary) AS [MaxSalary]
+       MAX(e.Salary) AS [MaxSalary]
 FROM Employees AS e
 GROUP BY e.DepartmentID
 HAVING MAX(e.Salary) NOT BETWEEN 30000 AND 70000
@@ -193,7 +192,8 @@ WHERE e.ManagerID IS NULL
 --Problem 19.**Salary Challenge
 --**************************************
 
-SELECT TOP (10) FirstName,
+SELECT TOP (10) 
+              FirstName,
               LastName,
               DepartmentID
 FROM Employees AS e
