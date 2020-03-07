@@ -105,11 +105,12 @@ JOIN Projects AS p ON ep.ProjectID = p.ProjectID
 WHERE e.EmployeeID = 24 
 
 --Problem 9.Employee Manager
+--************************************
 
-SELECT e.EmployeeID,
-	   e.FirstName,
-	   e.ManagerID,
-	   em.FirstName AS ManagerName
+SELECT  e.EmployeeID,
+	e.FirstName,
+	e.ManagerID,
+	em.FirstName AS ManagerName
 FROM Employees AS e
 JOIN Employees AS em ON e.ManagerID = em.EmployeeID
 WHERE e.ManagerID IN (3, 7)
@@ -119,10 +120,10 @@ ORDER BY e.EmployeeID
 --*************************************
 
 SELECT TOP 50
-       e.EmployeeID,
-	   CONCAT(e.FirstName, ' ', e.LastName) AS EmployeeName,
-	   CONCAT(m.FirstName, ' ', m.LastName) AS ManagerName,
-	   d.[Name] AS DepartmentName
+         e.EmployeeID,
+         CONCAT(e.FirstName, ' ', e.LastName) AS EmployeeName,
+         CONCAT(m.FirstName, ' ', m.LastName) AS ManagerName,
+         d.[Name] AS DepartmentName
 FROM Employees AS e
 JOIN Employees AS m ON e.ManagerID = m.EmployeeID
 JOIN Departments AS d ON e.DepartmentID = d.DepartmentID 
@@ -132,9 +133,9 @@ ORDER BY e.EmployeeID
 --************************************
 SELECT MIN(m.AverageSalary) AS MinAverageSalary
 FROM (
-	  SELECT AVG(e.Salary) AS AverageSalary
-	  FROM Employees AS e
-	  GROUP BY e.DepartmentID
+       SELECT AVG(e.Salary) AS AverageSalary
+       FROM Employees AS e
+       GROUP BY e.DepartmentID
 	 ) AS m
 		
 --Problem 12.Highest Peaks in Bulgaria
