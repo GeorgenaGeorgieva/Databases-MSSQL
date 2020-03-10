@@ -145,8 +145,7 @@ USE [Geography]
 
 GO
 
-SELECT  
-	mc.CountryCode,
+SELECT  mc.CountryCode,
 	m.MountainRange,
 	p.PeakName,
 	p.Elevation
@@ -184,12 +183,12 @@ ORDER BY c.CountryName
 
 SELECT COUNT(g.MountainCount) as [Count]
 FROM ( 
-		SELECT c.CountryName,
-               COUNT(m.MountainId) AS MountainCount
+	SELECT c.CountryName,
+        COUNT(m.MountainId) AS MountainCount
         FROM Countries AS c
         LEFT JOIN MountainsCountries AS m ON c.CountryCode = m.CountryCode
         GROUP BY c.CountryName 
-	 ) AS g
+	) AS g
 WHERE g.MountainCount = 0
 
 --Problem 17.Highest Peak and Longest River by Country
@@ -208,11 +207,3 @@ ORDER BY HighestPeakElevation DESC,
          LongestRiverLength DESC,
 		 c.CountryName ASC
 
---
-
-
-
-
-
-
-SELECT * FROM Countries
