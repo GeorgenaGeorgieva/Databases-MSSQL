@@ -70,6 +70,7 @@ INSERT INTO Models ([Name], ManufacturerID) VALUES
 
 --Problem 3.Many-To-Many Relationship
 --*******************************************
+
 USE Administration
 
 GO
@@ -110,6 +111,7 @@ INSERT INTO StudentsExams (StudentID, ExamID) VALUES
 
 --Problem 4.Self-Referencing 
 --**********************************
+
 USE Administration
 
 GO
@@ -140,7 +142,7 @@ USE Store
 CREATE TABLE Cities (
 	CityID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	[Name] VARCHAR(50) NOT NULL
-	)
+)
 
 CREATE TABLE Customers (
 	CustomerID INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
@@ -212,6 +214,7 @@ CREATE TABLE Payments (
 
 --Problem 9.*Peaks in Rila
 --*****************************
+
 USE [Geography]
 
 GO
