@@ -101,8 +101,8 @@ GO
 
 --Problem 7.Define Function
 --*********************************
-CREATE FUNCTION ufn_IsWordComprised(@setOfLetters NVARCHAR(MAX), 
-									@word NVARCHAR(MAX)) 
+							       
+CREATE FUNCTION ufn_IsWordComprised(@setOfLetters NVARCHAR(MAX), @word NVARCHAR(MAX)) 
 RETURNS INT
 	BEGIN
 		DECLARE @counter INT = 1
@@ -120,6 +120,7 @@ RETURNS INT
 
 --Problem 9.Find Full Name
 --******************************
+				       
 USE Bank
 GO
 
@@ -133,8 +134,10 @@ GO
 
 EXEC usp_GetHoldersFullName
 GO
+				       
 --Problem 10.People with Balance Higher Than
 --*************************************************
+				       
 CREATE PROC usp_GetHoldersWithBalanceHigherThan(@number MONEY)
 AS
 	BEGIN
@@ -154,9 +157,8 @@ GO
 
 --Problem 11. Future Value Function
 --***************************************
-CREATE FUNCTION ufn_CalculateFutureValue (@initialSum MONEY, 
-										  @yearlyInterestRate FLOAT, 
-										  @numberOfYears INT)
+				       
+CREATE FUNCTION ufn_CalculateFutureValue (@initialSum MONEY, @yearlyInterestRate FLOAT, @numberOfYears INT)
 RETURNS MONEY
 	BEGIN
 		DECLARE @futureValue DECIMAL(10,4) =
@@ -167,8 +169,8 @@ GO
 
 --Problem 12. Calculating Interest
 --*****************************************
-CREATE PROC usp_CalculateFutureValueForAccount (@accountId INT,
-												@yearlyInterestRate FLOAT)
+										
+CREATE PROC usp_CalculateFutureValueForAccount (@accountId INT, @yearlyInterestRate FLOAT)
 AS
 	BEGIN
 		SELECT a.Id AS [Account Id],
@@ -187,15 +189,18 @@ GO
 
 --Problem 14.Create Table Logs
 --**********************************
+										
 USE Bank
+										
 GO
 
 CREATE TABLE Logs (
-					LogId INT NOT NULL IDENTITY(1, 1) PRIMARY KEY, 
-					AccountId INT NOT NULL FOREIGN KEY (AccountId) REFERENCES Accounts(Id), 
-					OldSum MONEY NOT NULL, 
-					NewSum MONEY NOT NULL
-				  )
+		   LogId INT NOT NULL IDENTITY(1, 1) PRIMARY KEY, 
+		   AccountId INT NOT NULL FOREIGN KEY (AccountId) REFERENCES Accounts(Id), 
+		   OldSum MONEY NOT NULL, 
+		   NewSum MONEY NOT NULL			  
+)
+										
 GO
 
 CREATE TRIGGER tr_AccountsLogsAfterUpdate 
@@ -218,12 +223,14 @@ GO
 
 --Problem 15. Create Table Emails
 --************************************
+										
 CREATE TABLE NotificationEmails (
 	Id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Recipient INT NOT NULL FOREIGN KEY (Recipient) REFERENCES Accounts(Id),
 	[Subject] NVARCHAR(MAX) NOT NULL, 
 	Body NVARCHAR(MAX) NOT NULL
 )
+										
 GO
 
 CREATE TRIGGER tr_AddNewEmailWhenNewRegordsIsMakeIntoLogsLable
@@ -235,19 +242,15 @@ AS
 		VALUES(
 			   (SELECT AccountId
 				FROM inserted),
-		        CONCAT(
-						'Balance change for account: ', (SELECT AccountId
-                                                         FROM inserted)),
-		        CONCAT(
-						'On ', 
-						FORMAT(GETDATE(), 'dd-MM-yyyy HH:mm'), 
-						'your balance was changed from ', 
-						(SELECT OldSum
-						 FROM Logs), 
-						 'to ', 
-						 (SELECT NewSum
-						  FROM Logs),
-						   '.')
+		        CONCAT('Balance change for account: ', 
+			       (SELECT AccountId FROM inserted)),
+		        CONCAT('On ', 
+			       FORMAT(GETDATE(), 'dd-MM-yyyy HH:mm'), 		
+			       'your balance was changed from ', 
+				(SELECT OldSum FROM Logs), 
+				'to ', 
+				(SELECT NewSum FROM Logs),
+				'.')
 		      )
 	END
 
