@@ -131,6 +131,7 @@ ORDER BY e.EmployeeID
 
 --Problem 11.Min Average Salary
 --************************************
+
 SELECT MIN(m.AverageSalary) AS MinAverageSalary
 FROM (
        SELECT AVG(e.Salary) AS AverageSalary
