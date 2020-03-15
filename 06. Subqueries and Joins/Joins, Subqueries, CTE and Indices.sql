@@ -194,6 +194,7 @@ WHERE g.MountainCount = 0
 
 --Problem 17.Highest Peak and Longest River by Country
 --********************************************************
+
 SELECT TOP 5
        c.CountryName,
 	   MAX(p.Elevation) AS HighestPeakElevation,
